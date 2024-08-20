@@ -1,0 +1,78 @@
+package com.mallmgt.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.mallmgt.dao.ParkingDAO;
+import com.mallmgt.dao.SlotDAO;
+import com.mallmgt.dto.ParkingDTO;
+import com.mallmgt.dto.SlotDTO;
+import com.mallmgt.exception.RecordNotFoundException;
+
+@Service
+public class ParkingService {
+
+	@Autowired
+	public ParkingDAO dao;
+	@Autowired
+	public SlotDAO slotDao;
+
+	public ParkingDTO Add(ParkingDTO dto) {
+	ParkingDTO parking = null;
+	parking = dao.findByParkingName(dto.getParkingName());
+	
+	if(parking != null)
+		throw new RecordNotFoundException("Parking Name already exists !");
+	    parking = dao.save(dto);
+       return  parking;
+	}
+	
+
+	
+	public ParkingDTO findParkingById(long id) {
+		return dao.findById(id);
+	}
+	
+	public ParkingDTO findParkingByName(String parkingName) {
+		return dao.findByParkingName(parkingName);
+	}
+	
+	public List<ParkingDTO> list(){
+		List<ParkingDTO> dto = dao.findAll();
+		return dto;
+	}
+	
+	public ParkingDTO update(ParkingDTO dto){
+		ParkingDTO bean = dao.saveAndFlush(dto);
+		return bean;
+	}
+	
+	public void delete(long id) throws Exception {
+		if(id>0)
+		{
+			dao.deleteById(id);
+		}else {
+			throw new Exception("Not a valid id");
+		}
+		
+	}
+	
+	public ParkingDTO findLastParkingId() {
+		return dao.findTopByOrderByIdDesc();
+	}
+	
+	public void creatSlots(long id) {
+	       ParkingDTO parkingDto = findParkingById(id);
+	        long numberOfSlot = parkingDto.getNumberOfSlot();	        
+	        System.out.println("numberOfSlot: "+numberOfSlot);
+			for(int i=1; i<=numberOfSlot; i++) {
+				SlotDTO slots = new SlotDTO();
+				slots.setParkingId(parkingDto.getId());
+				slots.setSlot(i);
+				slots.setStatus(true);
+				slotDao.save(slots);
+			}
+	}
+	
+}
