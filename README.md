@@ -37,9 +37,10 @@ Clone the git repository of the project: git clone https://github.com/keerthired
         spring.jpa.generate-ddl=true
 
         spring.jpa.hibernate.ddl-auto = update
-        
+
         server.port = 8080
-        ```
+        
+```
 ### BACKEND SETUP:
 
 1. Create MYSQL server on port 8080.
