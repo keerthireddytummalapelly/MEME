@@ -23,15 +23,23 @@ Clone the git repository of the project: git clone https://github.com/keerthired
 1. Import the zip file of the project into eclipse IDE.
 2. Add the Lombok plugin to Eclipse by using the URL https://projectlombok.org/p2.
 3. Edit the following properties in ~/mallmgt/src/main/resources/application.properties file.
+```
         spring.datasource.url=jdbc:mysql://localhost:3306/mallmgt?createDatabaseIfNotExist=true
-        spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-        spring.datasource.username=root
-        spring.datasource.password=root
-        spring.jpa.database-platform = org.hibernate.dialect.MySQL8Dialect
-        spring.jpa.generate-ddl=true
-        spring.jpa.hibernate.ddl-auto = update
-        server.port = 8080
 
+        spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+        spring.datasource.username=root
+
+        spring.datasource.password=root
+
+        spring.jpa.database-platform = org.hibernate.dialect.MySQL8Dialect
+
+        spring.jpa.generate-ddl=true
+
+        spring.jpa.hibernate.ddl-auto = update
+        
+        server.port = 8080
+        ```
 ### BACKEND SETUP:
 
 1. Create MYSQL server on port 8080.
@@ -44,10 +52,5 @@ Clone the git repository of the project: git clone https://github.com/keerthired
 
 ### CREDENTIALS TO USE FOR TESTING:
 
-1. Administrator
-    Main Admin: [Username: Admin@gmail.com, Password: Demo@123]
-    Food Admin:
-        Food stall Name: Taco Bell - [Username: Tacobelladmin@gmail.com, Password: Demo@123]
-        Food stall Name: Popeyes - [Username: Popeyesadmin@gmail.com, Password: Demo@123]
-        Food stall Name: Mc Donalds - [Username: Mcdadmin@gmail.com, Password: Demo@123]
-2. Customer - [Username: Keerthi@gmail.com, Password: Demo@123]
+1. Administrator - Username: Admin@gmail.com, Password: Demo@123
+2. Customer - Username: Keerthi@gmail.com, Password: Demo@123
